@@ -138,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
             if "=" in param:
                 (key, val) = param.split("=")
                 val = val.replace("_", " ")
-                if "." in val:
+                if "." in val and "@" not in val:
                     val = float(val)
                 elif val.isdigit():
                     val = int(val)
