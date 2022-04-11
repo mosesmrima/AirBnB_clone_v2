@@ -1,3 +1,5 @@
+--setup the mysql dev env
+
 CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
 CREATE DATABASE IF NOT EXISTS hbnb_dev_db;
 USE hbnb_dev_db;
