@@ -2,7 +2,7 @@
 # this fabric module contains one function to compress
 
 import os.path
-from datetiem import datetime
+from datetime import datetime
 from fabric.api import local
 
 
