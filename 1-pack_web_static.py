@@ -6,7 +6,7 @@ from datetiem import datetime
 from fabric.api import local
 
 def do_pack():
-    """ Create a tar archive """
+    """ This functions create a tar archive for the web_static directory """
     dt = datetime.utcnow()
     path = "versions/web_static_{}{}{}{}{}{}.tgz".format(dt.year,
                                                          dt.month,
