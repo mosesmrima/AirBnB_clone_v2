@@ -9,4 +9,3 @@ GRANT SELECT
    ON performance_schema.*
    TO 'hbnb_dev'@'localhost';
 FLUSH PRIVILEGES;
-SHOW DATABASES LIKE 'hbnb_dev_db';
