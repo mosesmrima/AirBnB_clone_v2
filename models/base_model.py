@@ -31,16 +31,16 @@ class BaseModel:
 
     def __str__(self):
         """Returns a string representation of the instance"""
-        cls = (str(type(self)).split(".")[-1]).split("'")[0]
-        return "[{}] ({}) {}".format(cls, self.id, self.__dict__)
+        dic = {}
+        dic = self.__dict__.copy()
+        dic.pop("_sa_instance_state", None)
+        return "[{}] ({}) {}".format(type(self).__name__, self.id, dic)
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
-        from models import storage
-
         self.updated_at = datetime.now()
-        storage.new(self)
-        storage.save()
+        model.storage.new(self)
+        model.storage.save()
 
     def to_dict(self):
         """Convert instance into dict format"""
@@ -55,4 +55,4 @@ class BaseModel:
 
     def delete(self):
         """Delete current instance"""
-        storage.delete(self)
+        models.storage.delete(self)
