@@ -3,7 +3,7 @@
 import uuid
 from datetime import datetime
 import models
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column
 from sqlalchemy import DateTime
 from sqlalchemy import String
@@ -34,20 +34,20 @@ class BaseModel:
         dic = {}
         dic = self.__dict__.copy()
         dic.pop("_sa_instance_state", None)
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, dic)
+        return "[[{}] ({}) {}]".format(type(self).__name__, self.id, dic)
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
         self.updated_at = datetime.now()
-        model.storage.new(self)
-        model.storage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """Convert instance into dict format"""
         dictionary = {}
         dictionary.update(self.__dict__)
-        dictionary.update(
-            {"__class__": (str(type(self)).split(".")[-1]).split("'")[0]})
+        dictionary.update({"__class__": (str(type(self)).split(".")[-1]).split(
+            "'")[0]})
         dictionary["created_at"] = self.created_at.isoformat()
         dictionary["updated_at"] = self.updated_at.isoformat()
         dictionary.pop("_sa_instance_state", None)
